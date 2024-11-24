@@ -1,4 +1,4 @@
-let todoItems;
+let todoItems: { id: number; title: string; done: boolean }[];
 
 // fetchTodoItems() 함수가 todos라는 배열이 담긴 변수를 변환하고 있기 때문에 함수의 반환타입은 todos 변수의 데이터 타입이어야 함
 function fetchTodoItems(): { id: number; title: string; done: boolean }[] {
@@ -17,26 +17,29 @@ function fetchTodos(): { id: number; title: string; done: boolean }[] {
 }
 //todo에는 현재 아무 값이나 올 수 있다.
 //함수의 반환값 없으면 void
-function addTodo(todo: any): void {
+function addTodo(todo: { id: number; title: string; done: boolean }): void {
   todoItems.push(todo);
 }
 
-function deleteTodo(index: any): void {
+function deleteTodo(index: number): void {
   todoItems.splice(index, 1);
 }
 
-function completeTodo(index: any, todo: any): void {
+function completeTodo(
+  index: number,
+  todo: { id: number; title: string; done: boolean }
+): void {
   todo.done = true;
   todoItems.splice(index, 1, todo);
 }
 
 //첫 번째 할 일 출력
-function logFirstTodo(): any {
+function logFirstTodo(): { id: number; title: string; done: boolean } {
   return todoItems[0];
 }
 
 // 완료된 할 일 목록 표시
-function showCompleted(): any {
+function showCompleted(): { id: number; title: string; done: boolean }[] {
   return todoItems.filter(item => item.done);
 }
 
