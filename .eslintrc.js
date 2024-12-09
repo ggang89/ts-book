@@ -6,13 +6,13 @@ module.exports = {
     jest: true,
   },
   extends: [
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
-  plugins: ['prettier', '@typescript-eslint'],
+  plugins: ["prettier", "@typescript-eslint"],
   rules: {
-    'prettier/prettier': [
-      'error',
+    "prettier/prettier": [
+      "error",
       {
         singleQuote: true,
         semi: true,
@@ -20,13 +20,15 @@ module.exports = {
         tabWidth: 2,
         printWidth: 80,
         bracketSpacing: true,
-        arrowParens: 'avoid',
+        arrowParens: "avoid",
       },
     ],
-    '@typescript-eslint/no-explicit-any': 'off',
-    'prefer-const': 'off',
+    // "@typescript-eslint/no-explicit-any": "off",
+    // "@typescript-eslint/explicit-function-return-type": "off",
+    // => 함수의 반환타입이 지정되어 있지 않거나 타입이 지정되어야 할 곳에 타입이 없어면 에러 표시됨
+    "prefer-const": "off",
   },
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: "@typescript-eslint/parser",
   },
 };
