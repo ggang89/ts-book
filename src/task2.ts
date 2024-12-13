@@ -12,9 +12,10 @@ interface Contact {
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
-function fetchContacts() {
-  // TODO: 아래 변수의 타입을 지정해보세요.
-  const contacts = [
+function fetchContacts(): Promise<Contact[]> {
+  // 이 함수는 resolve(성공) 값으로 contacts를 받는다.
+  // Promise는 성공값을 .then()으로 처리할 때 제네릭 타입으로 값의 타입을 정의할 수 있다
+  const contacts: Contact[] = [
     {
       name: 'Tony',
       address: 'Malibu',
@@ -50,49 +51,50 @@ function fetchContacts() {
     },
   ];
   return new Promise(resolve => {
-    setTimeout(() => resolve(contacts), 2000);
+    setTimeout(() => resolve(contacts), 2000); // resolve가 contacts을 반환함
   });
 }
 
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  contacts = [];
+  contacts: Contact[] = [];
 
   constructor() {
     this.fetchData();
   }
 
-  fetchData() {
+  fetchData(): void {
     fetchContacts().then(response => {
       this.contacts = response;
     });
   }
 
   /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
-  findContactByName(name) {
+  findContactByName(name: string): Contact[] {
     return this.contacts.filter(contact => contact.name === name);
   }
 
-  findContactByAddress(address) {
+  findContactByAddress(address: string): Contact[] {
     return this.contacts.filter(contact => contact.address === address);
   }
 
-  findContactByPhone(phoneNumber, phoneType: string) {
+  findContactByPhone(phoneNumber: number, phoneType: string): Contact[] {
     return this.contacts.filter(
       contact => contact.phones[phoneType].num === phoneNumber
+      // phones[phoneType].num = phones.phoneType.num
     );
   }
 
-  addContact(contact) {
+  addContact(contact: Contact): void {
     this.contacts.push(contact);
   }
 
-  displayListByName() {
+  displayListByName(): string[] {
     return this.contacts.map(contact => contact.name);
   }
 
-  displayListByAddress() {
+  displayListByAddress(): string[] {
     return this.contacts.map(contact => contact.address);
   }
   /* ------------------------------------------------ */
